@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+</head>
+
+<body>
+
+<script>
+
+const routes = {
+
+  home: "https://picorobotics.shop",
+
+  wa: "https://wa.me/8801XXXXXXXXX"
+
+};
+
+const params = new URLSearchParams(window.location.search);
+
+const target = params.get("to");
+
+if (routes[target]) {
+
+  window.location.replace(routes[target]);
+
+} else {
+
+  document.body.innerHTML = "<h2>Invalid QR Link</h2>";
+
+}
+
+</script>
+
+</body>
+</html>
