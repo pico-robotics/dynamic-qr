@@ -3,6 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
+
+  <!-- Prevent cache -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Redirecting...</title>
 </head>
 
@@ -12,7 +18,7 @@
 
 const routes = {
 
-  home: "https://dicksucker.shoyab",
+  home: "https://picorobotics.shop",
 
   wa: "https://wa.me/8801XXXXXXXXX"
 
@@ -22,9 +28,26 @@ const params = new URLSearchParams(window.location.search);
 
 const target = params.get("to");
 
+/*
+  Cache buster
+*/
+const cacheBuster = Date.now();
+
 if (routes[target]) {
 
-  window.location.replace(routes[target]);
+  let url = routes[target];
+
+  /*
+    Optional:
+    add unique query to bypass browser cache
+  */
+  if (url.includes("?")) {
+    url += "&t=" + cacheBuster;
+  } else {
+    url += "?t=" + cacheBuster;
+  }
+
+  window.location.replace(url);
 
 } else {
 
